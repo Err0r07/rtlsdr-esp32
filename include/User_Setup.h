@@ -1,0 +1,11 @@
+#define ILI9341_DRIVER
+#define TFT_WIDTH  240
+#define TFT_HEIGHT 320
+#define TFT_CS   10
+#define TFT_DC   46
+#define TFT_MOSI 11
+#define TFT_SCLK 12
+#define TFT_BL   45
+#define TFT_BACKLIGHT_ON HIGH
+#define SPI_FREQUENCY 40000000
+#define SUPPORT_TRANSACTIONS
