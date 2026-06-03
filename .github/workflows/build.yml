@@ -1,3 +1,4 @@
+cat > .github/workflows/build.yml << 'ENDOFFILE'
 name: Build ESP32 Firmware
 
 on:
@@ -13,11 +14,16 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install PlatformIO
-        run: pip install platformio
+        run: pip install platformio esptool
       - name: Build
         run: pio run
+      - name: Merge firmware
+        run: |
+          cd .pio/build/esp32-s3-devkitc-1
+          esptool.py --chip esp32s3 merge_bin -o merged.bin 0x0 bootloader.bin 0x8000 partitions.bin 0x10000 firmware.bin
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
           name: firmware
-          path: .pio/build/esp32-s3-devkitc-1/firmware.bin
+          path: .pio/build/esp32-s3-devkitc-1/merged.bin
+ENDOFFILE
