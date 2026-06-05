@@ -5,12 +5,13 @@ TFT_eSPI tft = TFT_eSPI();
 
 void setup() {
   Serial.begin(115200);
-  delay(500);
-  Serial.println("LCD test start");
-  pinMode(45, OUTPUT);
-  digitalWrite(45, HIGH);
-  tft.init();
+  delay(2000);
+  Serial.println("START");
+  tft.begin();
+  Serial.println("TFT begin done");
   tft.setRotation(0);
+  tft.fillScreen(TFT_RED);
+  Serial.println("RED done");
 }
 
 void loop() {
